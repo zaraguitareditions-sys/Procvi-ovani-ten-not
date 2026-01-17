@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Procvičování čtení not</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vexflow/releases/vexflow-debug.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>Procvičování čtení not</h1>
+
+<div class="top-panel">
+
+  <div class="stats">
+    <div class="stat-row ok">
+      <span class="icon">✔</span>
+      <span class="label">Správně:</span>
+      <span id="correct" class="value">0</span>
+    </div>
+    <div class="stat-row bad">
+      <span class="icon">✖</span>
+      <span class="label">Špatně:</span>
+      <span id="wrong" class="value">0</span>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="startBtn" class="start-btn">ZAČÍT</button>
+    <button id="endBtn">UKONČIT</button>
+
+    <div class="time-select">
+      <label><input type="radio" name="time" value="60" checked> 1 min</label>
+      <label><input type="radio" name="time" value="120"> 2 min</label>
+      <label><input type="radio" name="time" value="180"> 3 min</label>
+    </div>
+
+    <div class="timer">⏱ <span id="time">60</span> s</div>
+  </div>
+
+  <div class="theme-toggle">
+    <label><input type="checkbox" id="darkToggle"> 🌙</label>
+  </div>
+
+</div>
+
+<div class="vexbox">
+  <div id="output"></div>
+</div>
+
+<!-- KLAVIATURA -->
+<div class="piano">
+
+  <!-- 4 OKTÁVY -->
+  <!-- malá -->
+  <div class="octave">
+    <div class="white" data-note="c/3">c</div>
+    <div class="white" data-note="d/3">d</div>
+    <div class="white" data-note="e/3">e</div>
+    <div class="white" data-note="f/3">f</div>
+    <div class="white" data-note="g/3">g</div>
+    <div class="white" data-note="a/3">a</div>
+    <div class="white" data-note="b/3">h</div>
+
+    <div class="black b1" data-note="c#/3"></div>
+    <div class="black b2" data-note="d#/3"></div>
+    <div class="black b3" data-note="f#/3"></div>
+    <div class="black b4" data-note="g#/3"></div>
+    <div class="black b5" data-note="a#/3"></div>
+  </div>
+
+  <!-- c¹ -->
+  <div class="octave">
+    <div class="white" data-note="c/4">c¹</div>
+    <div class="white" data-note="d/4">d¹</div>
+    <div class="white" data-note="e/4">e¹</div>
+    <div class="white" data-note="f/4">f¹</div>
+    <div class="white" data-note="g/4">g¹</div>
+    <div class="white" data-note="a/4">a¹</div>
+    <div class="white" data-note="b/4">h¹</div>
+
+    <div class="black b1" data-note="c#/4"></div>
+    <div class="black b2" data-note="d#/4"></div>
+    <div class="black b3" data-note="f#/4"></div>
+    <div class="black b4" data-note="g#/4"></div>
+    <div class="black b5" data-note="a#/4"></div>
+  </div>
+
+  <!-- c² -->
+  <div class="octave">
+    <div class="white" data-note="c/5">c²</div>
+    <div class="white" data-note="d/5">d²</div>
+    <div class="white" data-note="e/5">e²</div>
+    <div class="white" data-note="f/5">f²</div>
+    <div class="white" data-note="g/5">g²</div>
+    <div class="white" data-note="a/5">a²</div>
+    <div class="white" data-note="b/5">h²</div>
+
+    <div class="black b1" data-note="c#/5"></div>
+    <div class="black b2" data-note="d#/5"></div>
+    <div class="black b3" data-note="f#/5"></div>
+    <div class="black b4" data-note="g#/5"></div>
+    <div class="black b5" data-note="a#/5"></div>
+  </div>
+
+  <!-- c³ -->
+  <div class="octave">
+    <div class="white" data-note="c/6">c³</div>
+    <div class="white" data-note="d/6">d³</div>
+    <div class="white" data-note="e/6">e³</div>
+    <div class="white" data-note="f/6">f³</div>
+    <div class="white" data-note="g/6">g³</div>
+    <div class="white" data-note="a/6">a³</div>
+    <div class="white" data-note="b/6">h³</div>
+
+    <div class="black b1" data-note="c#/6"></div>
+    <div class="black b2" data-note="d#/6"></div>
+    <div class="black b3" data-note="f#/6"></div>
+    <div class="black b4" data-note="g#/6"></div>
+    <div class="black b5" data-note="a#/6"></div>
+  </div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
