@@ -12,9 +12,7 @@ const keys = document.querySelectorAll(".white, .black");
 
 const notes = [
   "c/3","d/3","e/3","f/3","g/3","a/3","b/3",
-  "c/4","d/4","e/4","f/4","g/4","a/4","b/4",
-  "c/5","d/5","e/5","f/5","g/5","a/5","b/5",
-  "c/6","d/6","e/6","f/6","g/6","a/6","b/6"
+  "c/4","d/4","e/4","f/4","g/4","a/4","b/4"
 ];
 
 let renderer, context, stave;
@@ -22,45 +20,34 @@ let currentNote = null;
 let running = false;
 let timer = null;
 
-/* ===== OSNOVA ===== */
 function drawEmptyStave() {
   output.innerHTML = "";
-
   renderer = new Renderer(output, Renderer.Backends.SVG);
-  renderer.resize(740, 160);
+  renderer.resize(720, 160);
   context = renderer.getContext();
 
   const color = document.body.classList.contains("dark") ? "#fff" : "#000";
-  context.setStrokeStyle(color);
   context.setFillStyle(color);
+  context.setStrokeStyle(color);
 
-  stave = new Stave(20, 40, 700);
+  stave = new Stave(20, 40, 680);
   stave.setBegBarType(Barline.type.NONE);
   stave.setEndBarType(Barline.type.NONE);
   stave.addClef("treble");
   stave.setContext(context).draw();
 }
 
-/* ===== NOTA ===== */
 function drawNote() {
   drawEmptyStave();
-
   currentNote = notes[Math.floor(Math.random() * notes.length)];
-
   const note = new StaveNote({
     clef: "treble",
     keys: [currentNote],
     duration: "q"
   });
-
-  note.setStyle({
-    fillStyle: document.body.classList.contains("dark") ? "#fff" : "#000"
-  });
-
   Formatter.FormatAndDraw(context, stave, [note]);
 }
 
-/* ===== START ===== */
 function startTest() {
   running = true;
   correctEl.textContent = 0;
@@ -79,28 +66,24 @@ function startTest() {
   }, 1000);
 }
 
-/* ===== KONEC ===== */
 function endTest() {
   clearInterval(timer);
   running = false;
   output.innerHTML = "";
 }
 
-/* ===== KLAVIATURA ===== */
 keys.forEach(k => {
   k.addEventListener("click", () => {
     if (!running || !k.dataset.note) return;
-
     if (k.dataset.note === currentNote) {
-      correctEl.textContent = Number(correctEl.textContent) + 1;
+      correctEl.textContent++;
       drawNote();
     } else {
-      wrongEl.textContent = Number(wrongEl.textContent) + 1;
+      wrongEl.textContent++;
     }
   });
 });
 
-/* ===== DARK MODE ===== */
 darkToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark", darkToggle.checked);
   drawEmptyStave();
