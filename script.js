@@ -21,9 +21,8 @@ let renderer, context, stave;
 let currentNote = null;
 let running = false;
 let timer = null;
-let timeLeft = 60;
 
-/* ================= OSNOVA ================= */
+/* ===== OSNOVA ===== */
 function drawEmptyStave() {
   output.innerHTML = "";
 
@@ -39,11 +38,10 @@ function drawEmptyStave() {
   stave.setBegBarType(Barline.type.NONE);
   stave.setEndBarType(Barline.type.NONE);
   stave.addClef("treble");
-
   stave.setContext(context).draw();
 }
 
-/* ================= NOTA ================= */
+/* ===== NOTA ===== */
 function drawNote() {
   drawEmptyStave();
 
@@ -59,22 +57,16 @@ function drawNote() {
     fillStyle: document.body.classList.contains("dark") ? "#fff" : "#000"
   });
 
-  note.setXShift(60);
-
-  // ✅ JEDINÉ SPRÁVNÉ VOLÁNÍ
   Formatter.FormatAndDraw(context, stave, [note]);
 }
 
-/* ================= START ================= */
+/* ===== START ===== */
 function startTest() {
   running = true;
-
   correctEl.textContent = 0;
   wrongEl.textContent = 0;
 
-  timeLeft = Number(
-    document.querySelector('input[name="time"]:checked').value
-  );
+  let timeLeft = Number([...timeRadios].find(r => r.checked).value);
   timeEl.textContent = timeLeft;
 
   drawNote();
@@ -87,14 +79,14 @@ function startTest() {
   }, 1000);
 }
 
-/* ================= KONEC ================= */
+/* ===== KONEC ===== */
 function endTest() {
   clearInterval(timer);
   running = false;
   output.innerHTML = "";
 }
 
-/* ================= KLAVIATURA ================= */
+/* ===== KLAVIATURA ===== */
 keys.forEach(k => {
   k.addEventListener("click", () => {
     if (!running || !k.dataset.note) return;
@@ -108,24 +100,13 @@ keys.forEach(k => {
   });
 });
 
-/* ================= ČAS – OKAMŽITĚ ================= */
-timeRadios.forEach(radio => {
-  radio.addEventListener("change", () => {
-    timeLeft = Number(radio.value);
-    timeEl.textContent = timeLeft;
-  });
-});
-
-/* ================= DARK MODE ================= */
+/* ===== DARK MODE ===== */
 darkToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark", darkToggle.checked);
   drawEmptyStave();
 });
 
-/* ================= BUTTONY ================= */
 startBtn.addEventListener("click", startTest);
 endBtn.addEventListener("click", endTest);
 
-/* INIT */
 drawEmptyStave();
-timeEl.textContent = timeLeft;
