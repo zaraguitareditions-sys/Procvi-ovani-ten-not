@@ -1,2 +1,2 @@
-# Procvi-ovani-ten-not
+# Procvicovani-cteni-not
 trainer
