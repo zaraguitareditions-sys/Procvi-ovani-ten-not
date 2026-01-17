@@ -1,0 +1,222 @@
+:root {
+  --green: #4CAF50;
+  --text-main: #1f2933;
+  --bg: #fafafa;
+}
+
+/* =====================
+   ZÁKLAD STRÁNKY
+===================== */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0,0,0,0.015), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(0,0,0,0.02), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(0,0,0,0.015), transparent 40%),
+    var(--bg);
+  color: var(--text-main);
+}
+
+body.dark {
+  --bg: #0f172a;
+  --text-main: #e5e7eb;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 24px 64px;
+  text-align: center;
+}
+
+/* =====================
+   NADPIS
+===================== */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  margin-bottom: 56px;
+}
+
+/* =====================
+   HORNÍ PANEL
+===================== */
+.top-panel {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+/* =====================
+   STATISTIKY
+===================== */
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 18px;
+  text-align: left;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: 26px 120px auto;
+  align-items: center;
+}
+
+.stat-row .value {
+  font-weight: 600;
+}
+
+.ok { color: var(--green); }
+.bad { color: #d32f2f; }
+
+body.dark .stat-row .icon {
+  color: #ffffff;
+}
+
+/* animace čísel */
+.value {
+  display: inline-block;
+  transition: transform 0.18s ease;
+}
+.value.bump {
+  transform: scale(1.25);
+}
+
+/* =====================
+   OVLÁDÁNÍ
+===================== */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.time-select {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.timer {
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+/* =====================
+   TLAČÍTKA
+===================== */
+.start-btn {
+  font-size: 22px;
+  padding: 18px 56px;
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 32px rgba(0,0,0,0.28);
+}
+
+.start-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+/* menší UKONČIT */
+#endBtn {
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* =====================
+   OSNOVA
+===================== */
+.vexbox {
+  margin: 48px auto 24px;
+}
+
+/* =====================
+   KLAVÍRNÍ KLAVIATURA
+===================== */
+.piano {
+  display: flex;
+  justify-content: center;
+  margin: 48px auto 24px;
+}
+
+.octave {
+  position: relative;
+  display: flex;
+}
+
+/* bílé klávesy */
+.white {
+  width: 60px;
+  height: 240px;
+  background: #ffffff;
+  border: 1px solid #bbb;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 10px;
+  font-size: 14px;
+  user-select: none;
+}
+
+body.dark .white {
+  background: #e5e7eb;
+  color: #000;
+}
+
+/* černé klávesy */
+.black {
+  position: absolute;
+  width: 36px;
+  height: 150px;
+  background: #111;
+  top: 0;
+  z-index: 10;
+  border-radius: 0 0 4px 4px;
+}
+
+/* přesné pozice půltónů (centrované) */
+.b1 { left: 42px; }   /* C# */
+.b2 { left: 102px; }  /* D# */
+.b3 { left: 222px; }  /* F# */
+.b4 { left: 282px; }  /* G# */
+.b5 { left: 342px; }  /* A# */
+
+/* =====================
+   FEEDBACK
+===================== */
+.correct {
+  background: var(--green);
+  color: white;
+}
+
+.wrong {
+  background: #e53935;
+  color: white;
+}
+
+#result {
+  margin-top: 28px;
+  font-size: 18px;
+}
